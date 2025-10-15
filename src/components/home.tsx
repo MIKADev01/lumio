@@ -304,11 +304,17 @@ const Home = () => {
       setSelectedFile(file);
       setIsUploading(true);
       // Simulate upload process
-      setTimeout(() => {
+      Promise.resolve().then(() => {
+        return new Promise<void>((resolve) => {
+          window.setTimeout(() => {
+            resolve();
+          }, 2000);
+        });
+      }).then(() => {
         setIsUploading(false);
         setShowUploadDialog(false);
         alert("Upload successful! You'll receive your demo within 24 hours.");
-      }, 2000);
+      });
     }
   };
 
